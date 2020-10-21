@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={s.item}>
       <img src='https://proprikol.ru/wp-content/uploads/2020/02/kartinki-na-avatarku-dlya-parnej-i-muzhchin-1-1.jpg' />
-      post 1
+      {props.message}
       <div>
-        <button>Like</button>
+        <button>{props.numberLike} Like</button>
       </div>
     </div>
   );

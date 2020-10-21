@@ -2,10 +2,10 @@
   grid-area: N;
   background-color: burlywood;
 }
-.item {
+.item a {
   color: white;
   text-decoration: none;
 }
-.item.active {
+.item.active a {
   color: gold;
 }
