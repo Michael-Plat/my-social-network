@@ -7,8 +7,9 @@
     padding: 15px;
 }
 
-.dialogsItems .active{
-    color: gold;
+.dialog a {
+    color: honeydew;
+    text-decoration: none;
 }
 
 .messages {
