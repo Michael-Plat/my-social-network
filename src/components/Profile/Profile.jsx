@@ -2,11 +2,12 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts.jsx';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
-const Profile = () => {
+
+const Profile = (props) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts />
+      <MyPosts posts={props.posts} />
     </div>
   );
 }
