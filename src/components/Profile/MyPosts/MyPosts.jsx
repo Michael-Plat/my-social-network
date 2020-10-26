@@ -3,7 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
 
 const MyPosts = (props) => {
-
+  
   let postsElemets = props.posts.map(p => <Post message={p.message} numberLike={p.numberLike} />);
 
   return (

@@ -10,3 +10,8 @@
 .item a.activeLink {
   color: gold;
 }
+.name {
+  text-align: left;
+  color: green;
+  margin-bottom: 10px;
+}
