@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from './redax/state';
+import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
-  <React.StrictMode>
-    <App state={state} />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <App state={state} />
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
