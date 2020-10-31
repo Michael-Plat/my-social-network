@@ -8,7 +8,9 @@ let state = {
             { id: 3, message: 'Nothing is clear, but very interesting! )', numberLike: 34 },
             { id: 4, message: 'YO', numberLike: 5 },
             { id: 5, message: 'My fist post', numberLike: 2 } 
-        ] },
+        ],
+        newPostText: 'IT-kamasutRa'
+    },
     dialogsPage: {
         dialogs: [
             { id: 1, name: 'Dimych' },
@@ -25,7 +27,9 @@ let state = {
             { id: 3, message: "Yo" },
             { id: 4, message: "Yo" },
             { id: 5, message: "Yo 34" }
-            ] },
+            ],
+        newMessageText: 'You new message' 
+        },
             
     sadeBar: {
         nameFriends: [
@@ -40,15 +44,33 @@ let state = {
         ]
     }
 }
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
         id: 6,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         numberLike: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     rerenderEntireTree(state);
 }
-
-  export default state;
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+export let addMessage = () => {
+    let newMessage = {
+        id: 6,
+        message: state.dialogsPage.newMessageText
+    };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+export let updateNewMessageText = (newText) => {
+    state.dialogsPage.newMessageText = newText;
+    rerenderEntireTree(state);
+}
+  
+export default state;
 

@@ -9,7 +9,8 @@ import Misuc from "./components/Music/Music.jsx";
 import Settings from './components/Settings/Settings';
 import {Route} from 'react-router-dom';
 import Friends from './components/Friends/Friends';
-import { addPost } from './redax/state';
+
+
 
 
 const App = (props) => {
@@ -18,9 +19,11 @@ const App = (props) => {
       <Header />
       <Navbar state={props.state.sadeBar} />
        <div className='app-wrapper-content'> 
-         <Route path='/Profile' render={ () => <Profile state={props.state.profilePage} 
-          addPost={props.addPost} />} /> 
-         <Route path='/Dialogs' render={ () => <Dialogs state={props.state.dialogsPage} />} />
+         <Route path='/Profile' render={ () => <Profile profilePage={props.state.profilePage} 
+          addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} /> 
+         <Route path='/Dialogs' render={ () => <Dialogs state={props.state.dialogsPage}
+         addMessage={props.addMessage} updateNewMessageText={props.updateNewMessageText}
+         newMessageText={props.state.dialogsPage.newMessageText} />} />
          <Route path='/News' render={ () => <News />} />
          <Route path='/Music' render={ () => <Misuc />} />
          <Route path='/Settings' render={ () => <Settings />} />
