@@ -11,8 +11,6 @@ import {Route} from 'react-router-dom';
 import Friends from './components/Friends/Friends';
 
 
-
-
 const App = (props) => {
   return (
     <div className='app-wrapper'>
@@ -20,10 +18,9 @@ const App = (props) => {
       <Navbar state={props.state.sadeBar} />
        <div className='app-wrapper-content'> 
          <Route path='/Profile' render={ () => <Profile profilePage={props.state.profilePage} 
-          addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} /> 
+          dispatch={props.dispatch} />} /> 
          <Route path='/Dialogs' render={ () => <Dialogs state={props.state.dialogsPage}
-         addMessage={props.addMessage} updateNewMessageText={props.updateNewMessageText}
-         newMessageText={props.state.dialogsPage.newMessageText} />} />
+         dispatch={props.dispatch} newMessageText={props.state.dialogsPage.newMessageText} />} />
          <Route path='/News' render={ () => <News />} />
          <Route path='/Music' render={ () => <Misuc />} />
          <Route path='/Settings' render={ () => <Settings />} />
