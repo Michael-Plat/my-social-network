@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMessageActionCreator, onMessageChangeActionCreator } from '../../redax/dialogsReducer';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
@@ -9,13 +10,12 @@ const Dialogs = (props) => {
 
     let messagesElements = props.state.messages.map(m => <Message message={m.message} />);
     
-    let newMessageElement = React.createRef();
     let addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'});
+        props.dispatch(addMessageActionCreator());
     }
-    let onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text});
+    let onMessageChange = (e) => {
+        let text = e.target.value;
+        props.dispatch(onMessageChangeActionCreator(text));
     }
     
     return (
@@ -25,7 +25,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText}></textarea>
+                <textarea onChange={onMessageChange}  value={props.newMessageText}></textarea>
                 <button onClick={addMessage}>New Message</button>
             </div>
         </div>
