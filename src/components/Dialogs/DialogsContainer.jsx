@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { addMessageActionCreator, onMessageChangeActionCreator } from '../../redax/dialogsReducer';
 import Dialogs from './Dialogs';
 import s from './Dialogs.module.css';
 
-const DialogsContainer = (props) => {
+/*const DialogsContainer = (props) => {
     
     let dialogsPage = props.store.getState().dialogsPage;
     
@@ -15,6 +16,24 @@ const DialogsContainer = (props) => {
     }
     
     return <Dialogs onMessageChangeText={onMessageChange} addMessage={addMessage} dialogsPage={dialogsPage} />
+}*/
+
+let mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage
+    };
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageActionCreator());
+        },
+        onMessageChange: (text) => {
+            dispatch(onMessageChangeActionCreator(text));
+        }
+    }
+}
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

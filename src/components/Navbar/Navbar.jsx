@@ -6,8 +6,8 @@ import s from './Navbar.module.css';
 
 const Navbar = (props) => {
   
-  let nameFriend = props.state.nameFriends.map(n => <FriendsBar name={n.friend} />);
-  let friendAvatar = props.state.friendsAvatars.map(av => <FriendsBar avatar={av.avatar} />);
+  let nameFriend = props.state.nameFriends.map(n => <FriendsBar name={n.friend} key={n.id} />);
+  let friendAvatar = props.state.friendsAvatars.map(av => <FriendsBar avatar={av.avatar} key={av.id} />);
 
   return (
     <nav className={s.Nav}>

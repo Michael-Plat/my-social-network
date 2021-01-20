@@ -4,7 +4,7 @@ import Post from './Post/Post.jsx';
 
 const MyPosts = (props) => {
 
-  let postsElemets = props.posts.map(p => <Post message={p.message} numberLike={p.numberLike} />);
+  let postsElemets = props.posts.map(p => <Post message={p.message} numberLike={p.numberLike} key={p.id} />);
 
   let newPostElemet = React.createRef();
 
@@ -14,7 +14,7 @@ const MyPosts = (props) => {
 
   let onPostChange = () => {
     let text = newPostElemet.current.value;
-    props.updateNewPostText(text);
+    props.onPostChange(text);
   }
 
   return (
