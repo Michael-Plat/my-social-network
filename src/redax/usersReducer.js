@@ -114,4 +114,5 @@ export const unfollow = (id) => {
         });
     }
 }
-    export default usersReducer;
+
+export default usersReducer;
