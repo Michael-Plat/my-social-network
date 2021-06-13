@@ -33,7 +33,7 @@ class ProfileStatus extends React.Component {
             this.setState({
                 status: this.props.status
             });
-        //let a = this.state; проверкаы
+        //let a = this.state; проверка
         //let b = this.props; проверка
         //console.log("componentDidUpdate") проверка
     }
