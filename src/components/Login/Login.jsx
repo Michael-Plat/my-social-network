@@ -5,6 +5,7 @@ import { maxLengthCreator, required } from '../../utils/validators/Validators';
 import { Input } from '../common/FormsControls/FormControls';
 import { login } from '../../redax/authReducer.js';
 import { Redirect } from 'react-router';
+import style from '../common/FormsControls/FormControls.module.css';
 
 const maxLength30 = maxLengthCreator(30);
 
@@ -12,16 +13,19 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Email"} name={"email"} component={Input} 
-                       validate={[required, maxLength30 ]} />
+                <Field placeholder={"Email"} name={"email"} component={Input}
+                    validate={[required, maxLength30]} />
             </div>
             <div>
                 <Field placeholder={"Password"} name={"password"} component={Input}
-                       validate={[required, maxLength30 ]} type={"password"} />
+                    validate={[required, maxLength30]} type={"password"} />
             </div>
             <div>
                 <Field component={Input} name={"rememberMe "} type={"checkbox"} /> remember me
-                </div>
+            </div>
+            { props.error && <div className={style.formSummaryError}>
+                {props.error}
+            </div> }
             <div>
                 <button>Login</button>
             </div>
@@ -29,7 +33,7 @@ const LoginForm = (props) => {
     );
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -48,7 +52,7 @@ const Login = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth 
+    isAuth: state.auth.isAuth
 })
- 
-export default connect(mapStateToProps, { login } ) (Login);
+
+export default connect(mapStateToProps, { login })(Login);
