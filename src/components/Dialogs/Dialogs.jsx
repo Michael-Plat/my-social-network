@@ -3,7 +3,7 @@ import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import { reduxForm, Field } from 'redux-form';
-import { Textarea } from '../common/Preloader/FormsControls/FormControls';
+import { Textarea } from '../common/FormsControls/FormControls';
 import { maxLengthCreator, required } from '../../utils/validators/Validators';
 
 const Dialogs = (props) => {
