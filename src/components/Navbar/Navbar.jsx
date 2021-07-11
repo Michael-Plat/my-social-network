@@ -1,13 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Friends from '../Friends/Friends';
 import FriendsBar from './FriendsBar/FriendsBar';
 import s from './Navbar.module.css';
 
 const Navbar = (props) => {
   
-  let nameFriend = props.state.nameFriends.map(n => <FriendsBar name={n.friend} key={n.id} />);
-  let friendAvatar = props.state.friendsAvatars.map(av => <FriendsBar avatar={av.avatar} key={av.id} />);
+  let nameFriend = props.sadeBar.nameFriends.map(n => <FriendsBar name={n.friend} key={n.id} />);
+  let friendAvatar = props.sadeBar.friendsAvatars.map(av => <FriendsBar avatar={av.avatar} key={av.id} />);
 
   return (
     <nav className={s.Nav}>
