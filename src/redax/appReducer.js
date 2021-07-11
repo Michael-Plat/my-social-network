@@ -1,4 +1,3 @@
-import { actionTypes } from "redux-form";
 import { getAuthUserDate } from "./authReducer";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
