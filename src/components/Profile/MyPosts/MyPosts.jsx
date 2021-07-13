@@ -6,7 +6,8 @@ import { maxLengthCreator, required } from '../../../utils/validators/Validators
 import { Textarea } from '../../common/FormsControls/FormControls';
 
 const MyPosts = React.memo(props => {
-  console.log("RENDER YO To");
+  
+  // console.log("RENDER YO To");
 
   let postsElemets = props.posts.map(p => <Post message={p.message} numberLike={p.numberLike} key={p.id} />);
 
