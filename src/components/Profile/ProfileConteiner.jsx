@@ -26,7 +26,7 @@ class ProfileConteiner extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,

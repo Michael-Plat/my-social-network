@@ -21,8 +21,8 @@ export const usersAPI = {
                 return response.data;
             });
     },
-    ubfollow(id) {
-        return instance.post(`follow/${id}`)
+    unfollow(id) {
+        return instance.delete(`follow/${id}`)
             .then(response => {
                 return response.data;
             });

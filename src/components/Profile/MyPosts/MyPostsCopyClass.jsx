@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { maxLengthCreator, required } from '../../../utils/validators/Validators';
+import { maxLengthCreator, required } from '../../../utils/validators/validators.js';
 import { Textarea } from '../../common/FormsControls/FormControls';
 import s from './MyPosts.module.css';
 import Post from './Post/Post.jsx';

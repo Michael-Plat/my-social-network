@@ -7,12 +7,9 @@ class ProfileStatus extends React.Component {
         status: this.props.status
     }
     activateEditMode = () => {
-        //console.log(this.state.editMode);
         this.setState({
             editMode: true
         })
-        //console.log(this.state.editMode);
-        // будет два false в консоле, потому-что setState асинхронный запрос, похож на Ajax
     }
 
     deactivateEditMode = () => {
@@ -33,13 +30,9 @@ class ProfileStatus extends React.Component {
             this.setState({
                 status: this.props.status
             });
-        //let a = this.state; проверка
-        //let b = this.props; проверка
-        //console.log("componentDidUpdate") проверка
     }
 
     render() {
-        // console.log("render") проверка
         return (
             <div>
                 {!this.state.editMode &&

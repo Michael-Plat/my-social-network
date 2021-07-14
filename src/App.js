@@ -19,7 +19,7 @@ import { initializeApp } from './redax/appReducer';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initializeApp(); 
+    this.props.initializeApp();
   }
   render() {
     if (!this.props.initialized) {
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => ({
   sadeBar: state.sadeBar
 })
 
-export default compose (withRouter, connect(mapStateToProps, {initializeApp})) (App);
+export default compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);

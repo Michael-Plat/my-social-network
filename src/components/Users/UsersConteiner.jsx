@@ -8,10 +8,12 @@ import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, get
 
 class UsersConteiner extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
-    onPageChanget = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+    onPageChanget = (pageNumber) => { 
+        const {pageSize} = this.props;
+        this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -25,18 +27,7 @@ class UsersConteiner extends React.Component {
     }
 }
 
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
-
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -46,30 +37,6 @@ let mapStateToProps = (state) => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}
-*/
 
 export default compose (
     connect(mapStateToProps,{ follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers: requestUsers })
