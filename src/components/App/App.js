@@ -1,20 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { connect, Provider } from 'react-redux';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
-import Preloader from './components/common/Preloader/Preloader';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Friends from './components/Friends/Friends';
-import HeaderConteiner from './components/Header/HeaderConteiner';
-import Login from './components/Login/Login';
-import Misuc from './components/Music/Music.jsx';
-import Navbar from './components/Navbar/Navbar.jsx';
-import News from './components/News/News.jsx';
-import ProfileConteiner from './components/Profile/ProfileConteiner';
-import Settings from './components/Settings/Settings';
-import UsersConteiner from './components/Users/UsersConteiner';
-import { initializeApp } from './redax/appReducer';
+import Preloader from '../common/Preloader/Preloader';
+import DialogsContainer from '../Dialogs/DialogsContainer';
+import Friends from '../Friends/Friends';
+import HeaderConteiner from '../Header/HeaderConteiner';
+import Login from '../Login/Login';
+import Misuc from '../Music/Music.jsx';
+import Navbar from '../Navbar/Navbar.jsx';
+import News from '../News/News.jsx';
+import ProfileConteiner from '../Profile/ProfileConteiner';
+import Settings from '../Settings/Settings';
+import UsersConteiner from '../Users/UsersConteiner';
+import { initializeApp } from '../../redax/appReducer';
+import store from '../../redax/reduxStore';
 
 
 class App extends React.Component {
@@ -49,4 +50,16 @@ const mapStateToProps = (state) => ({
   sadeBar: state.sadeBar
 })
 
-export default compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
+const AppConteiner = compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
+
+const MyCocialNetworkApp = (props) => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppConteiner />
+      </Provider>
+    </BrowserRouter>
+  );
+}
+
+export default MyCocialNetworkApp;
