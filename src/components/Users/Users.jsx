@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Paginator from '../common/Paginator/Paginator.jsx';
+import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
 
 
 const Users = ({ totalUsersCount, pageSize, currentPage, onPageChanget, ...props }) => {
     return <div>
-        <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize}
             currentPage={currentPage} onPageChanget={onPageChanget} />
         <div>
             {
