@@ -17,7 +17,7 @@ const LoginForm = ({ handleSubmit, error }) => {
             {createField("Password", "password", Input, [required, maxLength30], { type: "password" })}
             {createField(null, "rememberMe", Input, null, { type: "checkbox" }, "remember me")}
 
-            { error && <div className={style.formSummaryError}>
+            {error && <div className={style.formSummaryError}>
                 {error}
             </div>}
             <div>
@@ -27,7 +27,7 @@ const LoginForm = ({ handleSubmit, error }) => {
     );
 }
 
-const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
     const onSubmit = (formData) => {

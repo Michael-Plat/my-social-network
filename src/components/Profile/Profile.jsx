@@ -4,11 +4,10 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 
 const Profile = (props) => {
-
   return (
     <div>
       <ProfileInfo savePhoto={props.savePhoto} profile={props.profile} isOwner={props.isOwner}
-        status={props.status} updateStatus={props.updateStatus}  />
+        status={props.status} updateStatus={props.updateStatus} saveProfile={props.saveProfile} />
       <MyPostsContainer store={props.store} />
     </div>
   );

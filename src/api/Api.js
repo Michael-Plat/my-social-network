@@ -31,7 +31,7 @@ export const usersAPI = {
         console.warn("Obsolete method. Please profileAPI object.")
         return profileAPI.getProfile(userId);
     }
-}
+};
 
 export const profileAPI = {
     getProfile(userId) {
@@ -51,18 +51,21 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         });
+    },
+    saveProfile(profile) {
+        return instance.put(`Profile`, profile);
     }
-}
+};
 
 export const authAPI = {
     me() {
         return instance.get('auth/me');
     },
     login(email, password, rememberMe = false) {
-        return instance.post('auth/login', {email, password, rememberMe});
+        return instance.post('auth/login', { email, password, rememberMe });
     },
     logout() {
         return instance.delete('auth/login')
     }
-}
+};
 
