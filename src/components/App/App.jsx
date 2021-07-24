@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { connect, Provider } from 'react-redux';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Preloader from '../common/Preloader/Preloader';
@@ -32,14 +32,18 @@ class App extends React.Component {
         <HeaderConteiner />
         <Navbar {...this.props} />
         <div className='app-wrapper-content'>
-          <Route path='/Login' render={() => <Login />} />
-          <Route path='/Profile/:userId?' render={withSuspense(ProfileConteiner)} />
-          <Route path='/Dialogs' render={withSuspense(DialogsContainer)} />
-          <Route path='/News' render={() => <News />} />
-          <Route path='/Music' render={() => <Misuc />} />
-          <Route path='/Users' render={() => <UsersConteiner />} />
-          <Route path='/Settings' render={() => <Settings />} />
-          <Route path='/Friends' render={() => <Friends />} />
+          <Switch>
+            <Redirect exact from="/" to="/Profile" />
+            <Route path='/Login' render={() => <Login />} />
+            <Route path='/Profile/:userId?' render={withSuspense(ProfileConteiner)} />
+            <Route path='/Dialogs' render={withSuspense(DialogsContainer)} />
+            <Route path='/News' render={() => <News />} />
+            <Route path='/Music' render={() => <Misuc />} />
+            <Route path='/Users' render={() => <UsersConteiner />} />
+            <Route path='/Settings' render={() => <Settings />} />
+            <Route path='/Friends' render={() => <Friends />} />
+            <Route path='*' render={() => <div>404 NOT FOUND</div>} />
+          </Switch>
         </div>
       </div>
     );
