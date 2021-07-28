@@ -1,6 +1,8 @@
-let initialState = {
+type InitialStateType = typeof initialState;
+
+const initialState = {
     nameFriends: [
-        { id: 1, friend: 'Andrew' },
+        { id: 1, friend: 'Andrew', },
         { id: 2, friend: 'Sasha' },
         { id: 3, friend: 'Sveta' }
     ],
@@ -11,8 +13,10 @@ let initialState = {
     ]
 };
 
-const sadeBarReducer = (state = initialState, action) => {
+
+const sadeBarReducer = (state = initialState, action: any): InitialStateType => {
 
     return state;
 }
 export default sadeBarReducer;
+

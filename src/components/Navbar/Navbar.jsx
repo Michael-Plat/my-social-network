@@ -4,10 +4,10 @@ import FriendsBar from './FriendsBar/FriendsBar';
 import s from './Navbar.module.css';
 
 const Navbar = (props) => {
-  
-  let nameFriend = props.sadeBar.nameFriends.map(n => <FriendsBar name={n.friend} key={n.id} />);
+
   let friendAvatar = props.sadeBar.friendsAvatars.map(av => <FriendsBar avatar={av.avatar} key={av.id} />);
 
+  let nameFriend = props.sadeBar.nameFriends.map(n => <FriendsBar name={n.friend} key={n.id} />);
   return (
     <nav className={s.Nav}>
       <div className={`${s.item} ${s.active}`}>

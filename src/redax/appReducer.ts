@@ -2,11 +2,13 @@ import { getAuthUserDate } from "./authReducer";
 
 const INITIALIZED_SUCCESS = 'my-social-network/app/INITIALIZED_SUCCESS';
 
+type InitialStateType = typeof initialState;
+
 let initialState = {
     initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -18,16 +20,17 @@ const appReducer = (state = initialState, action) => {
     }
 }
 
-export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
+type initializedSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS // = 'my-social-network/app/INITIALIZED_SUCCESS'
+}
+export const initializedSuccess = (): initializedSuccessActionType => ({ type: INITIALIZED_SUCCESS });
 
-export const initializeApp = () => (dispatch) => {
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserDate());
-    // dispatch(somethingelse());
-    // dispatch(somethingelse());
     Promise.all([promise])
         .then(() => {
             dispatch(initializedSuccess());
-        }); 
+        });
 }
 
 export default appReducer;
