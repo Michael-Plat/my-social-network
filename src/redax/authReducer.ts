@@ -1,7 +1,5 @@
-// import { login } from './authReducer';
 import { stopSubmit } from "redux-form";
 import { authAPI, securityAPI } from "../api/Api";
-// import { InitialStateType } from "./sadeBarReducer";
 
 const SET_USER_DATA = 'my-social-network/auth/SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCES = 'my-social-network/auth/GET_CAPTCHA_URL_SUCCES';
