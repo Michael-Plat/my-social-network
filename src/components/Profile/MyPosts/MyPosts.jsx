@@ -1,14 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post from './Post/Post.jsx';
+import Post from './Post/Post';
 import { reduxForm, Field } from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validators.js';
 import { Textarea } from '../../common/FormsControls/FormControls';
 
 const MyPosts = React.memo(props => {
   
-  // console.log("RENDER YO To");
-
   let postsElemets = props.posts.map(p => <Post message={p.message} numberLike={p.numberLike} key={p.id} />);
 
   let newPostElemet = React.createRef();

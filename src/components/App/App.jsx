@@ -39,7 +39,7 @@ class App extends React.Component {
             <Route path='/Dialogs' render={withSuspense(DialogsContainer)} />
             <Route path='/News' render={() => <News />} />
             <Route path='/Music' render={() => <Misuc />} />
-            <Route path='/Users' render={() => <UsersConteiner />} />
+            <Route path='/Users' render={() => <UsersConteiner pageTitle={'New acquaintances'} />} />
             <Route path='/Settings' render={() => <Settings />} />
             <Route path='/Friends' render={() => <Friends />} />
             <Route path='*' render={() => <div>404 NOT FOUND</div>} />
