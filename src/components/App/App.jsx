@@ -4,20 +4,20 @@ import { BrowserRouter, Redirect, Route, Switch, withRouter } from 'react-router
 import { compose } from 'redux';
 import './App.css';
 import Preloader from '../common/Preloader/Preloader';
-import Friends from '../Friends/Friends';
 import HeaderConteiner from '../Header/HeaderConteiner';
 import Login from '../Login/Login';
-import Misuc from '../Music/Music.jsx';
-import Navbar from '../Navbar/Navbar.jsx';
-import News from '../News/News.jsx';
-import Settings from '../Settings/Settings';
+import Navbar from '../Navbar/Navbar';
 import UsersConteiner from '../Users/UsersConteiner';
 import { initializeApp } from '../../redax/appReducer';
 import store from '../../redax/reduxStore';
-import { withSuspense } from '../../hoc/withSuspense.jsx';
+import { withSuspense } from '../../hoc/withSuspense';
 
-const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'));
-const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'));
+const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'))
+const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
+const News = lazy(() => import('../News/News')) 
+const Misuc = lazy(() => import('../Music/Music'))
+const Friends = lazy(() => import('../Friends/Friends'))
+const Settings = lazy(() => import('../Settings/Settings'))
 
 class App extends React.Component {
   componentDidMount() {
@@ -37,11 +37,11 @@ class App extends React.Component {
             <Route path='/Login' render={() => <Login />} />
             <Route path='/Profile/:userId?' render={withSuspense(ProfileConteiner)} />
             <Route path='/Dialogs' render={withSuspense(DialogsContainer)} />
-            <Route path='/News' render={() => <News />} />
-            <Route path='/Music' render={() => <Misuc />} />
+            <Route path='/News' render={withSuspense(News)} />
+            <Route path='/Music' render={withSuspense(Misuc)} />
             <Route path='/Users' render={() => <UsersConteiner pageTitle={'New acquaintances'} />} />
-            <Route path='/Settings' render={() => <Settings />} />
-            <Route path='/Friends' render={() => <Friends />} />
+            <Route path='/Friends' render={withSuspense(Friends)} />
+            <Route path='/Settings' render={withSuspense(Settings)} />
             <Route path='*' render={() => <div>404 NOT FOUND</div>} />
           </Switch>
         </div>
