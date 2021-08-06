@@ -1,15 +1,11 @@
 import React, { FC } from 'react';
+import PageNo from '../common/PageNo/PageNo';
 import s from './Settings.module.css';
 
-type PropsType = {
-
-}
+type PropsType = {}
 
 const Settings: FC<PropsType> = (props) => {
-    return (
-        <div>
-            Settings
-        </div>
-    );
+    return <PageNo />
 }
+
 export default Settings;
