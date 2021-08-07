@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import { stopSubmit } from "redux-form";
 import { profileAPI, usersAPI } from "../api/Api";
 import { PhotosType, PostsType, ProfileType } from "../types/types";
@@ -23,7 +24,7 @@ let initialState = {
     newPostText: ''
 };
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case ADD_POST: {
@@ -60,6 +61,9 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
     }
 };
 
+type ActionsTypes = AddPostActionCreatorActionType | SetUserProfileActionType | SetStatusActionType
+    | DeletePostActionType | SavePhotoSuccessActionType
+
 type AddPostActionCreatorActionType = {
     type: typeof ADD_POST
     newPostBody: string
@@ -90,23 +94,25 @@ type SavePhotoSuccessActionType = {
 }
 export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
+type DispatchType = Dispatch<ActionsTypes>
+
+export const getUserProfile = (userId: number) => async (dispatch: DispatchType) => {
 
     const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
 };
-export const getStatus = (userId: number) => async (dispatch: any) => {
+export const getStatus = (userId: number) => async (dispatch: DispatchType) => {
 
     const response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data));
 };
-export const updateStatus = (status: string) => async (dispatch: any) => {
+export const updateStatus = (status: string) => async (dispatch: DispatchType) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
 };
-export const savePhoto = (file: any) => async (dispatch: any) => {
+export const savePhoto = (file: any) => async (dispatch: DispatchType) => {
     const response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));

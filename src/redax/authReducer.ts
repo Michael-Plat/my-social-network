@@ -1,3 +1,6 @@
+import { AppStateType } from './reduxStore';
+import { ThunkAction } from 'redux-thunk';
+import { Dispatch } from 'react';
 import { stopSubmit } from "redux-form";
 import { authAPI, securityAPI } from "../api/Api";
 
@@ -14,7 +17,7 @@ let initialState = {
     captchaUrl: null as string | null // if null, then captcha is not required. 
 };
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
 
@@ -28,6 +31,8 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
             return state;
     }
 }
+
+type ActionsTypes = SetAuthUserDataActionType | GetCaptchaUrlSuccessActionType
 
 export type SetAuthUserDataPayloadActionType = {
     userId: number | null
@@ -51,7 +56,10 @@ type GetCaptchaUrlSuccessActionType = {
 export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessActionType =>
     ({ type: GET_CAPTCHA_URL_SUCCES, payload: { captchaUrl } });
 
-export const getAuthUserDate = () => async (dispatch: any) => {
+type DispatchType = Dispatch<ActionsTypes>
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+
+export const getAuthUserDate = () => async (dispatch: DispatchType) => {
     const response = await authAPI.me();
     if (response.data.resultCode === 0) {
         let { id, email, login } = response.data.data
@@ -71,12 +79,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
         dispatch(stopSubmit("login", { _error: message }));
     }
 }
-export const getCaptchaUrl = () => async (dispatch: any) => {
+export const getCaptchaUrl = () => async (dispatch: DispatchType) => {
     const response = await securityAPI.getCaptchaUrl();
     const captchaUrl = response.data.url;
     dispatch(getCaptchaUrlSuccess(captchaUrl));
 }
-export const logout = () => async (dispatch: any) => {
+export const logout = () => async (dispatch: DispatchType) => {
     const response = await authAPI.logout()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))

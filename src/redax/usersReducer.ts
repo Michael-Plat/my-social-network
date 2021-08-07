@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { usersAPI } from "../api/Api";
 import { UsersType } from "../types/types";
