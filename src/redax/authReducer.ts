@@ -1,9 +1,11 @@
-import { ResuitCodeForCaptchaEnum } from './../api/Api';
+import { ResuitCodeForCaptchaEnum } from '../api/api';
 import { AppStateType } from './reduxStore';
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
 import { stopSubmit } from "redux-form";
-import { authAPI, ResuitCodesEnum, securityAPI } from "../api/Api";
+import { ResuitCodesEnum } from "../api/api";
+import { authAPI } from '../api/auth-api';
+import { securityAPI } from '../api/security-api';
 
 const SET_USER_DATA = 'my-social-network/auth/SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCES = 'my-social-network/auth/GET_CAPTCHA_URL_SUCCES';
@@ -76,7 +78,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
         if (loginData.resultCode === ResuitCodeForCaptchaEnum.CaptchaIsRecvired) {
             dispatch(getCaptchaUrl());
         }
-        let message = loginData.messages.length > 0 ? loginData .messages[0] : "Some error";
+        let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
         dispatch(stopSubmit("login", { _error: message }));
     }
 }

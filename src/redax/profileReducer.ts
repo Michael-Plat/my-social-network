@@ -1,8 +1,8 @@
-import { ResuitCodesEnum } from './../api/Api';
+import { ResuitCodesEnum } from '../api/api';
 import { Dispatch } from 'react';
 import { stopSubmit } from "redux-form";
-import { profileAPI, usersAPI } from "../api/Api";
 import { PhotosType, PostsType, ProfileType } from "../types/types";
+import { profileAPI } from '../api/profile-api';
 
 const ADD_POST = 'my-social-network/profile/ADD-POST';
 const SET_USER_PROFILE = 'my-social-network/profile/SET_USER_PROFILE';
@@ -99,7 +99,7 @@ type DispatchType = Dispatch<ActionsTypes>
 
 export const getUserProfile = (userId: number) => async (dispatch: DispatchType) => {
 
-    const data = await usersAPI.getProfile(userId)
+    const data = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(data));
 };
 export const getStatus = (userId: number) => async (dispatch: DispatchType) => {
@@ -116,7 +116,7 @@ export const updateStatus = (status: string) => async (dispatch: DispatchType) =
 export const savePhoto = (file: any) => async (dispatch: DispatchType) => {
     const data = await profileAPI.savePhoto(file)
     if (data.resultCode === ResuitCodesEnum.Success) {
-        dispatch(savePhotoSuccess(data.photos));
+        dispatch(savePhotoSuccess(data.data.photos));
     }
 };
 export const saveProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {

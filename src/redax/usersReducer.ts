@@ -1,10 +1,10 @@
-import { ResuitCodesEnum } from './../api/Api';
+import { ResuitCodesEnum } from '../api/api';
 import { Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { usersAPI } from "../api/Api";
 import { UsersType } from "../types/types";
 import { updateObjectInArray } from "../utils/objectHelpers";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
+import { usersAPI } from '../api/users-api';
 
 type InitialStateType = typeof initialState
 
