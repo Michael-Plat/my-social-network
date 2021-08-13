@@ -9,7 +9,7 @@ import { reducer as formReducer } from "redux-form";
 import appReducer from "./appReducer";
 
 
-let rootReducers = combineReducers({
+const rootReducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sadeBar: sadeBarReducer,
