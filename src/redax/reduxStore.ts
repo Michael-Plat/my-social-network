@@ -22,10 +22,9 @@ const rootReducers = combineReducers({
 type RootReducersType = typeof rootReducers // (globalstate: AppStateType) => AppStateType
 export type AppStateType = ReturnType<RootReducersType>
 
-type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never
-export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesType<T>>
+export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 
-export type BaseThunkType<A extends Action, R = void> = ThunkAction<R, AppStateType, unknown, A>
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

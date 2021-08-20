@@ -34,7 +34,7 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
-    addMessageActionCreator: (newMessageBody: string) => ({ type: 'MSN/DIALOGS/ADD-MESSAGE', newMessageBody } as const)
+    sendMessage: (newMessageBody: string) => ({ type: 'MSN/DIALOGS/ADD-MESSAGE', newMessageBody } as const)
 }
 
 export default dialogsReducer;
@@ -49,6 +49,6 @@ type MessagesType = {
     message: string
 }
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 type ActionsType = InferActionsTypes<typeof actions>
