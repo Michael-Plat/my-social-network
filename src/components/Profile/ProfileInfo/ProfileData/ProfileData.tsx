@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
+import { ContactsType, ProfileType } from "../../../../types/types";
 import s from '../ProfileInfo.module.css';
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+const ProfileData: FC<PropsType> = ({ profile, isOwner, goToEditMode }) => {
     return (
         <div>
             {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
@@ -22,16 +23,26 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
             </div>
             <div>
                 <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
                 })}
             </div>
         </div>
     );
 };
 
-const Contact = ({ contactTitle, contactValue }) => {
+const Contact: FC<ContactPropsType> = ({ contactTitle, contactValue }) => {
     return <div className={s.contact}><b>{contactTitle}: </b>{contactValue}</div>
 };
 
-export default ProfileData;
+export default ProfileData
 
+type PropsType = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: () => void
+}
+
+type ContactPropsType = {
+    contactTitle: string
+    contactValue: string
+}

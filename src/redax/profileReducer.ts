@@ -13,8 +13,7 @@ let initialState = {
         { id: 5, message: 'My fist post', numberLike: 2 }
     ] as Array<PostsType>,
     profile: null as ProfileType | null,
-    status: "",
-    newPostText: ''
+    status: ""
 }
 
 const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -29,7 +28,6 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
             };
         }
         case 'MSN/PROFILE/SET_STATUS': {

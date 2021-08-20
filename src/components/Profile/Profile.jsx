@@ -1,7 +1,6 @@
-import React from 'react';
-import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
-import s from './Profile.module.css';
-import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
+import React from 'react'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 const Profile = (props) => {
   return (

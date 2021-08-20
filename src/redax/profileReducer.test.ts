@@ -10,7 +10,6 @@ const state = {
     ],
     profile: null,
     status: "",
-    newPostText: ''
 };
 
 test('length of posts should be incremented', () => {
