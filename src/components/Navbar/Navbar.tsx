@@ -1,14 +1,9 @@
-import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { InitialStateType } from '../../redax/sadeBarReducer';
-import FriendsBar from './FriendsBar/FriendsBar';
-import s from './Navbar.module.css';
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+import FriendsBar, { PropsType } from './FriendsBar/FriendsBar'
+import s from './Navbar.module.css'
 
-const Navbar: FC<PropsType> = ({ sadeBar }) => {
-
-  // const friendAvatar = sadeBar.friendsAvatars.map(av  => <FriendsBar avatar={av.avatar} key={av.id} />);
-
-  // const nameFriend = sadeBar.nameFriends.map(n => <FriendsBar name={n.name} key={n.id} />);
+const Navbar: FC<PropsType> = ({sadeBar}) => {
   return (
     <nav className={s.Nav}>
       <div className={`${s.item} ${s.active}`}>
@@ -40,7 +35,3 @@ const Navbar: FC<PropsType> = ({ sadeBar }) => {
 }
 
 export default Navbar
-
-type PropsType = {
-  sadeBar: InitialStateType
-}
