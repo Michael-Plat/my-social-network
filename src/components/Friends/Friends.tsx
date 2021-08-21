@@ -2,8 +2,6 @@ import React, { FC } from 'react';
 import PageNo from '../common/PageNo/PageNo';
 import s from './Friends.module.css';
 
-type PropsType = {}
-
 const Friends: FC<PropsType> = (props) => {
     return (
         <div className={s.nameFriend}>
@@ -13,3 +11,5 @@ const Friends: FC<PropsType> = (props) => {
 }
 
 export default Friends;
+
+type PropsType = {}

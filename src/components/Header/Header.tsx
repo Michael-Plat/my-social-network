@@ -1,12 +1,6 @@
-import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import s from './Header.module.css';
-
-type PropsType = {
-  isAuth: boolean
-  login: string
-  logout: () => void
-}
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+import s from './Header.module.css'
 
 const Header: FC<PropsType> = ({ isAuth, login, logout }) => {
   return (
@@ -21,4 +15,10 @@ const Header: FC<PropsType> = ({ isAuth, login, logout }) => {
   );
 }
 
-export default Header;
+export default Header
+
+export type PropsType = {
+  isAuth: boolean
+  login: string | null
+  logout: () => void
+}

@@ -50,7 +50,7 @@ const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus, isOwner, sa
 export default ProfileInfo
 
 type PropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean

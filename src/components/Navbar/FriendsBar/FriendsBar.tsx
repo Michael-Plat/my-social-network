@@ -1,19 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
+import { InitialStateType } from '../../../redax/sadeBarReducer'
 import s from './../Navbar.module.css'
 
-type PropsType = {
-    name: string
-    avatar: string
-}
-
-const FriendsBar: FC<PropsType> = ({ name, avatar }) => {
+const FriendsBar: FC<PropsType> = ({ sadeBar }) => {
     return (
         <div>
-            {name}
             <div>
-                <img className={s.imgName} src={avatar} />
+                {/* <img className={s.imgName} src={avatar} />
+                {name} */}
             </div>
         </div>
-    );
+    )
 }
-export default FriendsBar;
+
+export default FriendsBar
+
+type PropsType = {
+    sadeBar: InitialStateType
+}
