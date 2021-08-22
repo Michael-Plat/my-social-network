@@ -1,18 +1,18 @@
-import { ResuitCodesEnum } from '../api/api';
-import { Dispatch } from "redux";
-import { UsersType } from "../types/types";
-import { updateObjectInArray } from "../utils/objectHelpers";
-import { BaseThunkType, InferActionsTypes } from "./reduxStore";
-import { usersAPI } from '../api/users-api';
+import { APIResponseType, ResuitCodesEnum } from '../api/api'
+import { Dispatch } from "redux"
+import { UsersType } from "../types/types"
+import { updateObjectInArray } from "../utils/objectHelpers"
+import { BaseThunkType, InferActionsTypes } from "./reduxStore"
+import { usersAPI } from '../api/users-api'
 
-let initialState = {
+const initialState = {
     users: [] as Array<UsersType>,
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
     followingInProgress: [] as Array<number> // array of users ids
-};
+}
 
 const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
@@ -50,7 +50,7 @@ const usersReducer = (state = initialState, action: ActionsType): InitialStateTy
         }
 
         default:
-            return state;
+            return state
     }
 }
 
@@ -69,41 +69,41 @@ export const actions = {
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
     return async (dispatch) => {
-        dispatch(actions.setCurrentPage(page));
-        dispatch(actions.toggleIsFetching(true));
+        dispatch(actions.toggleIsFetching(true))
+        dispatch(actions.setCurrentPage(page))
 
-        const data = await usersAPI.getUsers(page, pageSize);
-        dispatch(actions.toggleIsFetching(false));
-        dispatch(actions.setUsers(data.items));
-        dispatch(actions.setTotalUsersCount(data.totalCount));
+        const data = await usersAPI.getUsers(page, pageSize)
+        dispatch(actions.toggleIsFetching(false))
+        dispatch(actions.setUsers(data.items))
+        dispatch(actions.setTotalUsersCount(data.totalCount))
     };
 }
 
-const _followUnfollowFlow = async (dispatch: Dispatch, id: number, apiMethod: any,
+const _followUnfollowFlow = async (dispatch: Dispatch, id: number, apiMethod: (userId: number) => Promise<APIResponseType>,
     actionCreator: (id: number) => ActionsType) => {
 
-    dispatch(actions.toggleFollowingProgress(true, id));
+    dispatch(actions.toggleFollowingProgress(true, id))
     const data = await apiMethod(id)
     if (data.resultCode == ResuitCodesEnum.Success) {
-        dispatch(actionCreator(id));
+        dispatch(actionCreator(id))
     }
-    dispatch(actions.toggleFollowingProgress(false, id));
+    dispatch(actions.toggleFollowingProgress(false, id))
 }
 
 export const follow = (id: number): ThunkType => {
     return async (dispatch) => {
-        await _followUnfollowFlow(dispatch, id, usersAPI.follow.bind(usersAPI), actions.followSuccess);
-    };
+        await _followUnfollowFlow(dispatch, id, usersAPI.follow.bind(usersAPI), actions.followSuccess)
+    }
 }
 export const unfollow = (id: number): ThunkType => {
     return async (dispatch) => {
-        await _followUnfollowFlow(dispatch, id, usersAPI.unfollow.bind(usersAPI), actions.unfollowSuccess);
-    };
+        await _followUnfollowFlow(dispatch, id, usersAPI.unfollow.bind(usersAPI), actions.unfollowSuccess)
+    }
 }
 
 export default usersReducer;
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 type ActionsType = InferActionsTypes<typeof actions>
 
