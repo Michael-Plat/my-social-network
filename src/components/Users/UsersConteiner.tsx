@@ -10,17 +10,17 @@ import { AppStateType } from '../../redax/reduxStore'
 
 class UsersConteiner extends Component<PropsType> {
     componentDidMount() {
-        const { currentPage, pageSize } = this.props
-        this.props.getUsers(currentPage, pageSize, '')
+        const { currentPage, pageSize, filter } = this.props
+        this.props.getUsers(currentPage, pageSize, filter)
     }
     onPageChanget = (pageNumber: number) => {
         const { pageSize, filter } = this.props
-        this.props.getUsers(pageNumber, pageSize, filter.term)
+        this.props.getUsers(pageNumber, pageSize, filter)
     }
 
     onFilterChanget = (filter: FilterType) => {
         const { pageSize } = this.props
-        this.props.getUsers(1, pageSize, filter.term)
+        this.props.getUsers(1, pageSize, filter)
 
     }
 
@@ -64,7 +64,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    getUsers: (page: number, pageSize: number, tern: string) => void
+    getUsers: (page: number, pageSize: number, filter: FilterType) => void
     unfollow: (id: number) => void
     follow: (id: number) => void
 }

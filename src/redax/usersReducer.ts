@@ -12,7 +12,10 @@ const initialState = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>, // array of users ids
-    filter: {term: ''}
+    filter: {
+        term: '',
+        friend: null as null | boolean
+    }
 }
 
 const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -42,7 +45,7 @@ const usersReducer = (state = initialState, action: ActionsType): InitialStateTy
             return { ...state, isFetching: action.isFetching }
         }
         case 'MSN/USERS/SET_FILTER': {
-            return {...state, filter: action.payload}
+            return { ...state, filter: action.payload }
         }
         case 'MSN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS': {
             return {
@@ -64,7 +67,7 @@ export const actions = {
     unfollowSuccess: (userId: number) => ({ type: 'MSN/USERS/UNFOLLOW', userId } as const),
     setUsers: (users: Array<UsersType>,) => ({ type: 'MSN/USERS/SET_USERS', users } as const),
     setCurrentPage: (currentPage: number) => ({ type: 'MSN/USERS/SET_CURRENT_PAGE', currentPage } as const),
-    setFilter: (term: string) => ({ type: 'MSN/USERS/SET_FILTER', payload: { term } } as const),
+    setFilter: (filter: FilterType) => ({ type: 'MSN/USERS/SET_FILTER', payload: filter } as const),
     setTotalUsersCount: (totalUsersCount: number) => ({ type: 'MSN/USERS/SET_TOTAL_USERS_COUNT', totalUsersCount } as const),
     toggleIsFetching: (isFetching: boolean) => ({ type: 'MSN/USERS/TOGGLE_IS_FETCHING', isFetching } as const),
     toggleFollowingProgress: (isFetching: boolean, userId: number) =>
@@ -72,13 +75,13 @@ export const actions = {
 
 }
 
-export const requestUsers = (page: number, pageSize: number, term: string): ThunkType => {
+export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
     return async (dispatch) => {
         dispatch(actions.toggleIsFetching(true))
         dispatch(actions.setCurrentPage(page))
-        dispatch(actions.setFilter(term))
+        dispatch(actions.setFilter(filter))
 
-        const data = await usersAPI.getUsers(page, pageSize, term)
+        const data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend)
         dispatch(actions.toggleIsFetching(false))
         dispatch(actions.setUsers(data.items))
         dispatch(actions.setTotalUsersCount(data.totalCount))
