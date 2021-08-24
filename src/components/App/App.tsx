@@ -5,12 +5,12 @@ import { compose } from 'redux'
 import './App.css'
 import Preloader from '../common/Preloader/Preloader'
 import HeaderConteiner from '../Header/HeaderConteiner'
-import Login from '../Login/Login'
 import Navbar from '../Navbar/Navbar'
 import { UsersPage } from '../Users/UsersConteiner'
 import { initializeApp } from '../../redax/appReducer'
 import store, { AppStateType } from '../../redax/reduxStore'
 import { withSuspense } from '../../hoc/withSuspense'
+import { Login } from '../Login/Login'
 
 const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'))
 const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
