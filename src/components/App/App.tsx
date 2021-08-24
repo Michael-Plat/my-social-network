@@ -7,7 +7,7 @@ import Preloader from '../common/Preloader/Preloader'
 import HeaderConteiner from '../Header/HeaderConteiner'
 import Login from '../Login/Login'
 import Navbar from '../Navbar/Navbar'
-import UsersConteiner from '../Users/UsersConteiner'
+import { UsersPage } from '../Users/UsersConteiner'
 import { initializeApp } from '../../redax/appReducer'
 import store, { AppStateType } from '../../redax/reduxStore'
 import { withSuspense } from '../../hoc/withSuspense'
@@ -49,7 +49,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             <Route path='/Dialogs' render={() => <SuspendedDialogs />} />
             <Route path='/News' render={withSuspense(News)} />
             <Route path='/Music' render={withSuspense(Misuc)} />
-            <Route path='/Users' render={() => <UsersConteiner pageTitle={'New acquaintances'} />} />
+            <Route path='/Users' render={() => <UsersPage pageTitle={'New acquaintances'} />} />
             <Route path='/Friends' render={withSuspense(Friends)} />
             <Route path='/Settings' render={withSuspense(Settings)} />
             <Route path='*' render={() => <div>404 NOT FOUND</div>} />
