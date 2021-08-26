@@ -24,7 +24,8 @@ export const Users: FC<PropsType> = (props) => {
 
     useEffect(() => {
         const queryString = require('querystring')
-        const parsed = queryString.parse(history.location.search.substr(1)) as { page: string, term: string, friend: string }
+
+        const parsed = queryString.parse(history.location.search.substr(1)) as QueryParamsType
 
         let actualPage = currentPage
         let actualFilter = filter
@@ -48,9 +49,16 @@ export const Users: FC<PropsType> = (props) => {
     }, [])
 
     useEffect(() => {
+        const query: QueryParamsType = {}
+        if (!!filter.term) query.term = filter.term
+        if (filter.friend !== null) query.friend = String(filter.friend)
+        if (currentPage !== 1) query.page = String(currentPage)
+
+        const queryString = require('querystring')
+
         history.push({
             pathname: '/users',
-            search: `?term=${filter.term}&friend=${filter.friend}&currentPage=${currentPage}`
+            search: queryString.stringify(query)
         })
     }, [filter, currentPage])
 
@@ -85,3 +93,9 @@ export const Users: FC<PropsType> = (props) => {
 }
 
 type PropsType = {}
+
+type QueryParamsType = {
+    page?: string
+    term?: string
+    friend?: string
+}
