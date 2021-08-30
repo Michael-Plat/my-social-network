@@ -10,7 +10,7 @@ const User: FC<PropsType> = ({ user, followingInProgress, unfollow, follow }) =>
             <span>
                 <div>
                     <NavLink to={'/profile/' + user.id} >
-                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} />
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt='Avatar' />
                     </NavLink>
                 </div>
                 <div>

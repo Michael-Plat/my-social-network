@@ -9,7 +9,7 @@ type PropsType = {
 const Post: FC<PropsType> = ({ message, numberLike }) => {
   return (
     <div className={s.item}>
-      <img src='https://proprikol.ru/wp-content/uploads/2020/02/kartinki-na-avatarku-dlya-parnej-i-muzhchin-1-1.jpg' />
+      <img src='https://proprikol.ru/wp-content/uploads/2020/02/kartinki-na-avatarku-dlya-parnej-i-muzhchin-1-1.jpg' alt='avatar' />
       {message}
       <div>
         <button>{numberLike} Like</button>

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import MyCocialNetworkApp from './components/App/App';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(<MyCocialNetworkApp />, document.getElementById('root'));
 
