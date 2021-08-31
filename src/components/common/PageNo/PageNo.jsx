@@ -1,31 +1,17 @@
-import React, { useRef } from "react";
+import { Content } from "antd/lib/layout/layout";
+import Title from "antd/lib/typography/Title";
+import React from "react";
 import s from "./PageNo.module.css";
-import videoCoffee from "../../../assets/video/Pretty girl with cup of coffee laughing at camera_preview.mp4";
+
 
 const PageNo = () => {
-    const vidRef = useRef();
-    const handlePauseVideo = () => {
-        vidRef.current.pause();
-    }
-    const handlePlayVideo = () => {
-        vidRef.current.play();
-    }
     return (
-        <div>
-            {/* The video  */}
-            <video id="myVideo" ref={vidRef} autoPlay muted loop>
-                <source src={videoCoffee}
-                    type="video/mp4" />
-            </video>
-            {/* Optional: some overlay text to describe the video  */}
-            <div className={s.content}>
-                <h1>Sorry, this page is under construction</h1>
-                <p>Don't worry, our team will do everything on time</p>
-                <h3>Now we can have coffee</h3>
-                {/* Use a button to pause/play the video */}
-                <button className={s.myBtn} onClick={handlePauseVideo}>Pause</button>
-                <button className={s.myBtn} onClick={handlePlayVideo}>Play</button>
-            </div>
+        <div className={s.imgCoffe}>
+            <Content style={{ textAlign: 'center', padding: '250px' }} >
+                <Title style={{ color: 'white' }} level={2}>Sorry, this page is under construction</Title>
+                <Title style={{ color: 'white' }} level={3}>Don't worry, our team will do everything on time</Title>
+                <Title style={{ color: 'white' }} level={3}>Now we can have coffee</Title>
+            </Content>
         </div>
     )
 }

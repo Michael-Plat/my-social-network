@@ -4,7 +4,6 @@ import { BrowserRouter, NavLink as Link, Redirect, Route, Switch, withRouter } f
 import { compose } from 'redux'
 import './App.css'
 import Preloader from '../common/Preloader/Preloader'
-import Navbar from '../Navbar/Navbar'
 import { UsersPage } from '../Users/UsersConteiner'
 import { initializeApp } from '../../redax/appReducer'
 import store, { AppStateType } from '../../redax/reduxStore'
@@ -48,7 +47,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 
       <Layout>
         <AppHeader />
-        <Content style={{ padding: '0 50px', background: '#B6D6C8' }}>
+        <Content style={{ padding: '0 30px 270px', background: '#B6D6C8', }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -93,7 +92,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             </Content>
           </Layout>
         </Content>
-        <Footer style={{ textAlign: 'center', background: '#297052', color: '#B6D6C8' }}>
+        <Footer style={{ textAlign: 'center', background: '#297052', color: '#B6D6C8', }}>
           My social Network ©2020 Created by Ivan Oblomov(Plat)
         </Footer>
       </Layout>

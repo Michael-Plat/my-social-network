@@ -6,6 +6,7 @@ import userPhoto from '../../../assets/images/user.png'
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm'
 import ProfileData from './ProfileData/ProfileData'
 import { ProfileType } from '../../../types/types'
+import { Image } from 'antd'
 
 const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
 
@@ -31,11 +32,8 @@ const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus, isOwner, sa
     }
     return (
         <div>
-            <div>
-                <img src='https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg' />
-            </div>
             <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} />
+                <Image src={profile.photos.large || userPhoto} className={s.mainPhoto} />
                 {isOwner && <input type="file" onChange={onMainPhotoSelected} />}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 

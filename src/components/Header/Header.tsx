@@ -4,7 +4,7 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import Title from 'antd/lib/typography/Title';
 import React, { FC } from 'react'
 import { UserOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUserLogin, selectIsAuth } from '../../redax/authSelectors';
 import { logout } from '../../redax/authReducer'
@@ -29,8 +29,11 @@ export const AppHeader: FC = (props) => {
             <SubMenu key="sub1" icon={<UserOutlined />} title="Login">
               <Menu.Item key="1" style={{ background: '#678276' }} >
                 {isAuth
-                  ? <div>{login} - <Button onClick={logoutCallback} >Log out</Button></div>
-                  : <NavLink to={'/Login '}>Login</NavLink>}
+                  ? <div>{login}<Button onClick={logoutCallback}>Log out</Button></div>
+                  : <Button>
+                    <Link to={'/Login'}>Login</Link>
+                  </Button>
+                }
               </Menu.Item>
             </SubMenu>
           </Menu>
