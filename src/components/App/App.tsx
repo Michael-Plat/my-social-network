@@ -9,14 +9,13 @@ import { initializeApp } from '../../redax/appReducer'
 import store, { AppStateType } from '../../redax/reduxStore'
 import { withSuspense } from '../../hoc/withSuspense'
 import { Login } from '../Login/Login'
-import { Layout, Menu, Breadcrumb, Typography, Row, Col } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, SettingOutlined } from '@ant-design/icons';
 import { AppHeader } from '../Header/Header'
 
 
 const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
-const { Title } = Typography
+const { Content, Footer, Sider } = Layout;
 
 const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'))
 const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))

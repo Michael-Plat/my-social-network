@@ -27,12 +27,10 @@ export const AppHeader: FC = (props) => {
         <Col span={4}>
           <Menu theme="dark" mode="horizontal" style={{ background: '#7EAD99', }}>
             <SubMenu key="sub1" icon={<UserOutlined />} title="Login">
-              <Menu.Item key="1" style={{ background: '#678276' }} >
+              <Menu.Item key="1" style={{ background: '#678276', color: 'white' }} >
                 {isAuth
-                  ? <div>{login}<Button onClick={logoutCallback}>Log out</Button></div>
-                  : <Button>
-                    <Link to={'/Login'}>Login</Link>
-                  </Button>
+                  ? <div>{login}<Button style={{ marginLeft: '15px' }} onClick={logoutCallback}>Log out</Button></div>
+                  : <Button style={{ marginLeft: '30px' }}><Link to={'/Login'}>Login</Link></Button>
                 }
               </Menu.Item>
             </SubMenu>
