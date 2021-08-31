@@ -1,21 +1,47 @@
+import { Button, Col, Menu, Row } from 'antd';
+import { Header } from 'antd/lib/layout/layout';
+import SubMenu from 'antd/lib/menu/SubMenu';
+import Title from 'antd/lib/typography/Title';
 import React, { FC } from 'react'
+import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom'
-import s from './Header.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUserLogin, selectIsAuth } from '../../redax/authSelectors';
+import { logout } from '../../redax/authReducer'
 
-const Header: FC<PropsType> = ({ isAuth, login, logout }) => {
+export const AppHeader: FC = (props) => {
+
+  const isAuth = useSelector(selectIsAuth)
+  const login = useSelector(selectCurrentUserLogin)
+
+  const dispatch = useDispatch()
+
+  const logoutCallback = () => {
+    dispatch(logout())
+  }
+
   return (
-    <header className={s.Header}>
-      <img src='https://upload.wikimedia.org/wikipedia/commons/f/f3/RKN_site_logo.png' />
-      <div className={s.loginBlock}>
-        {isAuth
-          ? <div>{login} - <button onClick={logout} >Log out</button></div>
-          : <NavLink to={'/Login '}>Login</NavLink>}
-      </div>
-    </header>
+    <Header className="header" style={{ background: '#7EAD99' }}  >
+      <div className="logo" />
+      <Row>
+        <Col span={4}>
+          <Menu theme="dark" mode="horizontal" style={{ background: '#7EAD99', }}>
+            <SubMenu key="sub1" icon={<UserOutlined />} title="Login">
+              <Menu.Item key="1" style={{ background: '#678276' }} >
+                {isAuth
+                  ? <div>{login} - <Button onClick={logoutCallback} >Log out</Button></div>
+                  : <NavLink to={'/Login '}>Login</NavLink>}
+              </Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Col>
+        <Col span={20}>
+          <Title style={{ color: '#003a8c', textAlign: 'right', margin: '7px 20px' }} level={2}>My Social Nework</Title>
+        </Col>
+      </Row>
+    </Header>
   );
 }
-
-export default Header
 
 export type PropsType = {
   isAuth: boolean

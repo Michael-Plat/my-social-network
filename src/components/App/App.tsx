@@ -1,21 +1,23 @@
 import React, { Component, ComponentType, FC, lazy } from 'react'
 import { connect, Provider } from 'react-redux'
-import { BrowserRouter, NavLink, Redirect, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter, NavLink as Link, Redirect, Route, Switch, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import './App.css'
 import Preloader from '../common/Preloader/Preloader'
-import HeaderConteiner from '../Header/HeaderConteiner'
 import Navbar from '../Navbar/Navbar'
 import { UsersPage } from '../Users/UsersConteiner'
 import { initializeApp } from '../../redax/appReducer'
 import store, { AppStateType } from '../../redax/reduxStore'
 import { withSuspense } from '../../hoc/withSuspense'
 import { Login } from '../Login/Login'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Typography, Row, Col } from 'antd';
 import { UserOutlined, LaptopOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppHeader } from '../Header/Header'
+
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography
 
 const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'))
 const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
@@ -45,13 +47,8 @@ class App extends Component<MapPropsType & DispatchPropsType> {
     return (
 
       <Layout>
-        <Header className="header" style={{ background: '#7EAD99' }} >
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ background: '#AAD6C3' }}>
-            <Menu.Item key="1" style={{ background: '#678276' }} >Login</Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <AppHeader />
+        <Content style={{ padding: '0 50px', background: '#B6D6C8' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -61,26 +58,26 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             <Sider className="site-layout-background" width={200} >
               <Menu
                 mode="inline"
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
-                style={{ height: '100%', background: '#AAD6C3' }}
+                // defaultSelectedKeys={['1']}
+                // defaultOpenKeys={['sub1']}
+                style={{ height: '100%', background: '#EFF1F5' }}
               >
                 <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                  <Menu.Item key="1"><NavLink to='/Profile'>Profile</NavLink></Menu.Item>
-                  <Menu.Item key="2"><NavLink to='/News'>My News</NavLink></Menu.Item>
-                  <Menu.Item key="3"><NavLink to='/Dialogs'>Messages</NavLink></Menu.Item>
-                  <Menu.Item key="4"><NavLink to='/Friends'>My contacts</NavLink></Menu.Item>
+                  <Menu.Item key="1">< Link to='/Profile'>Profile</Link></Menu.Item>
+                  <Menu.Item key="2"><Link to='/News'>My News</Link></Menu.Item>
+                  <Menu.Item key="3"><Link to='/Dialogs'>Messages</Link></Menu.Item>
+                  <Menu.Item key="4"><Link to='/Friends'>My contacts</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<LaptopOutlined />} title="Find">
-                  <Menu.Item key="5"><NavLink to='/Users'>Find contacts</NavLink></Menu.Item>
+                  <Menu.Item key="5"><Link to='/Users'>Find contacts</Link></Menu.Item>
                   <Menu.Item key="6">option6</Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<SettingOutlined />} title="Settings">
-                  <Menu.Item key="9"><NavLink to='/Settings'>Settings</NavLink></Menu.Item>
+                  <Menu.Item key="9"><Link to='/Settings'>Settings</Link></Menu.Item>
                 </SubMenu>
               </Menu>
             </Sider>
-            <Content style={{ padding: '0 24px', minHeight: 280 }}>
+            <Content style={{ padding: '0 24px', minHeight: 280, }}>
               <Switch>
                 <Redirect exact from="/" to="/Profile" />
                 <Route path='/Login' render={() => <Login />} />
@@ -96,9 +93,9 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             </Content>
           </Layout>
         </Content>
-        <Footer style={{
-          textAlign: 'center', background: '#297052'
-        }}>My social Network ©2020 Created by Ivan Oblomov(Plat)</Footer>
+        <Footer style={{ textAlign: 'center', background: '#297052', color: '#B6D6C8' }}>
+          My social Network ©2020 Created by Ivan Oblomov(Plat)
+        </Footer>
       </Layout>
     );
   }

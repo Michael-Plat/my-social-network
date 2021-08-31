@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import Preloader from '../common/Preloader/Preloader'
 import { getIsFetching } from '../../redax/usersSelectors'
+import Preloader from '../common/Preloader/Preloader'
+
 import { Users } from './Users'
 
 
