@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react'
+import { ComponentType } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../hoc/withAuthRedirect'

@@ -18,7 +18,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & 
             {createField<LoginFormValuesKeysType>("Password", "password", Input, [required, maxLength30], { type: "password" })}
             {createField<LoginFormValuesKeysType>(undefined, "rememberMe", Input, [], { type: "checkbox" }, "remember me")}
 
-            {captchaUrl && <img src={captchaUrl} />}
+            {captchaUrl && <img src={captchaUrl} alt={'captcha url'} />}
             {captchaUrl && createField<LoginFormValuesKeysType>("Symbols from image", "captcha", Input, [required])}
 
             {error && <div className={style.formSummaryError}>

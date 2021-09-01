@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import PageNo from '../common/PageNo/PageNo';
-import s from './News.module.css';
+import React, { FC } from 'react'
+import PageNo from '../common/PageNo/PageNo'
 
 type PropsType = {}
 

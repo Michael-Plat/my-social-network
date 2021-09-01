@@ -13,8 +13,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, SettingOutlined } from '@ant-design/icons';
 import { AppHeader } from '../Header/Header'
 
-
-const { SubMenu } = Menu;
+const { SubMenu, } = Menu;
 const { Content, Footer, Sider } = Layout;
 
 const ProfileConteiner = lazy(() => import('../Profile/ProfileConteiner'))
@@ -23,6 +22,7 @@ const News = lazy(() => import('../News/News'))
 const Misuc = lazy(() => import('../Music/Music'))
 const Friends = lazy(() => import('../Friends/Friends'))
 const Settings = lazy(() => import('../Settings/Settings'))
+const ChatPage = lazy(() => import('../../pages/Chat/ChatPage'))
 
 const SuspendedProfile = withSuspense(ProfileConteiner)
 const SuspendedDialogs = withSuspense(DialogsContainer)
@@ -68,7 +68,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                 </SubMenu>
                 <SubMenu key="sub2" icon={<LaptopOutlined />} title="Find">
                   <Menu.Item key="5"><Link to='/Users'>Find contacts</Link></Menu.Item>
-                  <Menu.Item key="6">option6</Menu.Item>
+                  <Menu.Item key="6"><Link to='/Chat'>Chat</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<SettingOutlined />} title="Settings">
                   <Menu.Item key="9"><Link to='/Settings'>Settings</Link></Menu.Item>
@@ -86,13 +86,14 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                 <Route path='/Users' render={() => <UsersPage pageTitle={'New acquaintances'} />} />
                 <Route path='/Friends' render={withSuspense(Friends)} />
                 <Route path='/Settings' render={withSuspense(Settings)} />
+                <Route path='/Chat' render={withSuspense(ChatPage)} />
                 <Route path='*' render={() => <div>404 NOT FOUND</div>} />
               </Switch>
             </Content>
           </Layout>
         </Content>
         <Footer style={{ textAlign: 'center', background: '#297052', color: '#B6D6C8', }}>
-          My social Network ©2020 Created by Ivan Oblomov(Plat)
+          My Social Network ©2020 Created by Ivan Oblomov(Plat)
         </Footer>
       </Layout>
     );
