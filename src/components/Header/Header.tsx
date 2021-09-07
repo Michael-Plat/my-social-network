@@ -37,7 +37,10 @@ export const AppHeader: FC = (props) => {
           </Menu>
         </Col>
         <Col span={20}>
-          <Title style={{ color: '#003a8c', textAlign: 'right', margin: '7px 20px' }} level={2}>My Social Nework</Title>
+          <Title style={{
+            color: '#003a8c', textAlign: 'right', margin: '7px 20px',
+            textShadow: '1px 0 1px #B6D6C8, 0 1px 1px #B6D6C8, -1px 0 1px #B6D6C8, 0 -1px 1px #B6D6C8'
+          }}>My Social Network</Title>
         </Col>
       </Row>
     </Header>
